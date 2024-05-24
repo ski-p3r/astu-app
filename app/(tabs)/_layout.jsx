@@ -1,8 +1,5 @@
 import { Tabs } from "expo-router";
 import React from "react";
-
-import { TabBarIcon } from "@/components/navigation/TabBarIcon";
-import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import Icon from "@/components/Icon";
 import icons from "@/constants/icons";
@@ -14,10 +11,11 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: "#FFA001",
+        // tabBarActiveTintColor: "#C03F3A",
         tabBarInactiveTintColor: "#CDCDE0",
         tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: "#161622",
+          backgroundColor: "#1F313D",
           borderTopWidth: 1,
           borderTopColor: "#232533",
           height: 65,
@@ -41,6 +39,21 @@ export default function TabLayout() {
       />
       <Tabs.Screen
         name="explore"
+        options={{
+          title: "Calculator",
+          headerShown: false,
+          tabBarIcon: ({ color, focused }) => (
+            <Icon
+              icon={icons.calculator}
+              color={color}
+              name="Calculator"
+              focused={focused}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="calculator"
         options={{
           title: "Calculator",
           headerShown: false,
