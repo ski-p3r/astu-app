@@ -38,21 +38,7 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: "Calculator",
-          headerShown: false,
-          tabBarIcon: ({ color, focused }) => (
-            <Icon
-              icon={icons.calculator}
-              color={color}
-              name="Calculator"
-              focused={focused}
-            />
-          ),
-        }}
-      />
+
       <Tabs.Screen
         name="calculator"
         options={{
@@ -71,13 +57,28 @@ export default function TabLayout() {
       <Tabs.Screen
         name="discover"
         options={{
-          title: "Locations",
+          title: "discover",
           headerShown: false,
           tabBarIcon: ({ color, focused }) => (
             <Icon
               icon={icons.discover}
               color={color}
               name="Locations"
+              focused={focused}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="explore"
+        options={{
+          title: "Calculator",
+          headerShown: false,
+          tabBarIcon: ({ color, focused }) => (
+            <Icon
+              icon={icons.calculator}
+              color={color}
+              name="Calculator"
               focused={focused}
             />
           ),
