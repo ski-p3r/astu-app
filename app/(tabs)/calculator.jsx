@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { Image, Modal, Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -7,13 +7,14 @@ import Courses from "@/data/data";
 import { BlurView } from "expo-blur";
 import { Grade } from "@/data/Grade";
 import icons from "@/constants/icons";
+import useCourseStore from "@/constants/store";
 
 export default function Calculator() {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [selectedGrade, setSelectedGrade] = useState();
   const [selectedCreditHours, setSelectedCreditHours] = useState();
-  const [courses, setCourses] = useState([]);
+  const courses = useCourseStore((state) => state.courses);
 
   const handleCourseSelect = (key) => {
     const course = Courses.find((c) => c.value === key);
@@ -32,44 +33,58 @@ export default function Calculator() {
 
   const handleAdd = () => {
     if (selectedCourse && selectedGrade && selectedCreditHours) {
-      // Check if the course already exists
-      const existingCourseIndex = courses.findIndex(
-        (course) => course.name === selectedCourse
-      );
-
-      if (existingCourseIndex !== -1) {
-        // Course exists, update it
-        const updatedCourses = [...courses];
-        updatedCourses[existingCourseIndex] = {
-          ...updatedCourses[existingCourseIndex],
-          grade: selectedGrade,
-          creditHours: selectedCreditHours,
-        };
-        setCourses(updatedCourses);
-      } else {
-        // Course doesn't exist, add it
-        setCourses([
-          ...courses,
-          {
-            name: selectedCourse,
-            grade: selectedGrade,
-            creditHours: selectedCreditHours,
-          },
-        ]);
-      }
+      const grade = Grade.find((g) => g.value === selectedGrade);
+      useCourseStore.getState().addCourse({
+        name: selectedCourse,
+        grade: grade.credit,
+        gradeStr: selectedGrade,
+        creditHours: selectedCreditHours,
+      });
 
       setSelectedCourse(null);
       setSelectedGrade(null);
       setSelectedCreditHours(null);
       setModalVisible(false);
     }
+    courses.map((course) => console.log(course));
   };
 
   const handleDelete = (courseName) => {
-    const updatedCourses = courses.filter(
-      (course) => course.name !== courseName
-    );
-    setCourses(updatedCourses);
+    useCourseStore.getState().deleteCourse(courseName);
+  };
+
+  const [totalGrade, setTotalGrade] = useState(0);
+  useEffect(() => {
+    calculateGPA();
+  }, [courses, selectedGrade, selectedCreditHours, selectedCourse]);
+
+  const calculateGPA = () => {
+    let totalCreditHours = 0;
+    let totalGradePoints = 0;
+
+    courses.forEach((course) => {
+      const creditHours = parseFloat(course.creditHours);
+      const grade = parseFloat(course.grade);
+
+      if (!isNaN(creditHours) && !isNaN(grade)) {
+        totalCreditHours += creditHours;
+        totalGradePoints += creditHours * grade;
+      } else {
+        console.error(
+          `Invalid credit hours or grade for course: ${course.value}`
+        );
+      }
+    });
+
+    if (totalCreditHours === 0) {
+      return 0;
+    }
+    console.log(totalCreditHours);
+    console.log(totalGradePoints);
+    console.log(totalGradePoints / totalCreditHours);
+    const gg = (totalGradePoints / totalCreditHours).toFixed(2);
+
+    setTotalGrade(gg);
   };
 
   return (
@@ -106,7 +121,7 @@ export default function Calculator() {
 
                 <View className="flex-row items-center bg-[#084eff] px-3 pb-0.5 rounded-full">
                   <Text className="text-white text-lg font-bold">
-                    {course.grade}
+                    {course.gradeStr}
                   </Text>
                 </View>
               </View>
@@ -136,7 +151,7 @@ export default function Calculator() {
         </View>
       </Pressable>
       <Text className="text-[#fff] font-medium text-2xl bg-[#0C1D47] py-3 mt-5 px-6 rounded-full">
-        Your GPA is
+        Your GPA is {totalGrade}
       </Text>
       <Modal
         animationType="slide"

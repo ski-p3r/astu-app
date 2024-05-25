@@ -68,6 +68,21 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="discover"
+        options={{
+          title: "Locations",
+          headerShown: false,
+          tabBarIcon: ({ color, focused }) => (
+            <Icon
+              icon={icons.discover}
+              color={color}
+              name="Locations"
+              focused={focused}
+            />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
