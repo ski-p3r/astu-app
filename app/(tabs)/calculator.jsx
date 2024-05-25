@@ -1,52 +1,124 @@
-import icons from "@/constants/icons";
+import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
 import { Image, Modal, Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { SelectList } from "react-native-dropdown-select-list";
+import Courses from "@/data/data";
+import { BlurView } from "expo-blur";
+import { Grade } from "@/data/Grade";
+import icons from "@/constants/icons";
 
 export default function Calculator() {
   const [modalVisible, setModalVisible] = useState(false);
-  const [selected, setSelected] = React.useState("");
+  const [selectedCourse, setSelectedCourse] = useState(null);
+  const [selectedGrade, setSelectedGrade] = useState();
+  const [selectedCreditHours, setSelectedCreditHours] = useState();
+  const [courses, setCourses] = useState([]);
+
+  const handleCourseSelect = (key) => {
+    const course = Courses.find((c) => c.value === key);
+    if (course && !courses.find((c) => c.value === course.value)) {
+      setSelectedCourse(course.value);
+      setSelectedCreditHours(course.creditHours);
+    }
+  };
+
+  const handleGradeSelect = (key) => {
+    const grade = Grade.find((g) => g.key === key); // Fix: Use Grade instead of grade
+    if (grade) {
+      setSelectedGrade(grade.value);
+    }
+  };
+
+  const handleAdd = () => {
+    if (selectedCourse && selectedGrade && selectedCreditHours) {
+      // Check if the course already exists
+      const existingCourseIndex = courses.findIndex(
+        (course) => course.name === selectedCourse
+      );
+
+      if (existingCourseIndex !== -1) {
+        // Course exists, update it
+        const updatedCourses = [...courses];
+        updatedCourses[existingCourseIndex] = {
+          ...updatedCourses[existingCourseIndex],
+          grade: selectedGrade,
+          creditHours: selectedCreditHours,
+        };
+        setCourses(updatedCourses);
+      } else {
+        // Course doesn't exist, add it
+        setCourses([
+          ...courses,
+          {
+            name: selectedCourse,
+            grade: selectedGrade,
+            creditHours: selectedCreditHours,
+          },
+        ]);
+      }
+
+      setSelectedCourse(null);
+      setSelectedGrade(null);
+      setSelectedCreditHours(null);
+      setModalVisible(false);
+    }
+  };
+
+  const handleDelete = (courseName) => {
+    const updatedCourses = courses.filter(
+      (course) => course.name !== courseName
+    );
+    setCourses(updatedCourses);
+  };
+
   return (
-    <SafeAreaView className="flex-1 w-full bg-white pt-3 items-center ">
+    <SafeAreaView className="flex-1 w-full bg-white pt-3 items-center">
       <StatusBar hidden />
       <Text className="text-3xl font-bold mb-3 text-[#0C1D47]">
         GPA Calculator
       </Text>
       <ScrollView className="max-h-[67%] gap-1 w-full px-4">
-        <View className="flex-1 bg-[#0C1D47] rounded-xl shadow-2xl ">
-          <View className="flex-row justify-between px-6 mt-3 ">
-            <View className="flex-row gap-3 items-center">
-              <Text className="text-white text-xl">Course:</Text>
-              <Text className="text-white text-2xl font-extrabold">
-                Courses
-              </Text>
-            </View>
-            <Image
-              source={icons.close}
-              resizeMode="contain"
-              className="w-6 h-6 relative left-3"
-            />
-          </View>
-
-          <View className="flex-row justify-between px-6 mt-3 mb-4">
-            <View className="flex-row items-center">
-              <Text className="text-white text-[16px]">Grade: </Text>
-              <View className="flex-row items-center bg-[#084eff] px-3 pb-0.5 rounded-full">
-                <Text className="text-white text-lg font-bold">A+</Text>
+        {courses.map((course, index) => (
+          <View
+            className="flex-1 bg-[#0C1D47] rounded-xl shadow-2xl "
+            key={index}
+          >
+            <View className="flex-row justify-between px-6 mt-3 ">
+              <View className="flex-row gap-3 items-center">
+                <Text className="text-white text-xl">Course:</Text>
+                <Text className="text-white text-2xl font-extrabold">
+                  {course.name}
+                </Text>
+              </View>
+              <Pressable onPress={() => handleDelete(course.name)}>
                 <Image
-                  source={icons.arrowDown}
+                  source={icons.close}
                   resizeMode="contain"
-                  className="w-4 h-4 relative top-0.5 ml-4"
+                  className="w-6 h-6 relative left-3"
                 />
+              </Pressable>
+            </View>
+
+            <View className="flex-row justify-between px-6 mt-3 mb-4">
+              <View className="flex-row items-center">
+                <Text className="text-white text-[16px]">Grade: </Text>
+
+                <View className="flex-row items-center bg-[#084eff] px-3 pb-0.5 rounded-full">
+                  <Text className="text-white text-lg font-bold">
+                    {course.grade}
+                  </Text>
+                </View>
+              </View>
+              <View className="flex-row items-center">
+                <Text className="text-white text-[16px]">Credit Hour:</Text>
+                <Text className="text-white text-lg ml-2 font-extrabold">
+                  {course.creditHours}
+                </Text>
               </View>
             </View>
-            <View className="flex-row items-center">
-              <Text className="text-white text-[16px]">Credit Hour:</Text>
-              <Text className="text-white text-lg ml-2 font-extrabold">4</Text>
-            </View>
           </View>
-        </View>
+        ))}
       </ScrollView>
 
       <Pressable className="w-full px-14" onPress={() => setModalVisible(true)}>
@@ -57,14 +129,14 @@ export default function Calculator() {
             borderStyle: "dashed",
             padding: 16,
           }}
-          className="rounded-xl flex-col items-center justify-center bg-white shadow-2xl mt-5 "
+          className="rounded-xl flex-col items-center justify-center bg-white shadow-2xl mt-5"
         >
           <Image source={icons.add} resizeMode="contain" className="w-8 h-8" />
           <Text className="text-[#0C1D47] font-medium text-lg">Add Course</Text>
         </View>
       </Pressable>
       <Text className="text-[#fff] font-medium text-2xl bg-[#0C1D47] py-3 mt-5 px-6 rounded-full">
-        Your GPA is 3.5
+        Your GPA is
       </Text>
       <Modal
         animationType="slide"
@@ -72,11 +144,70 @@ export default function Calculator() {
         visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}
       >
-        <View className="w-full h-72 bg-blue-600 shadow-2xl p-6 rounded-lg absolute bottom-0"></View>
+        <BlurView
+          intensity={900}
+          className="bg-gray-900 w-full absolute bottom-[65px] pt-1 rounded-xl"
+        >
+          <View
+            className="w-full  bg-white shadow-2xl p-6 rounded-t-2xl flex-col items-center pb-10 relative"
+            style={{
+              shadowColor: "#000",
+              shadowOffset: { width: 0, height: -10 },
+              shadowOpacity: 0.8,
+              shadowRadius: 10,
+              elevation: 20,
+            }}
+          >
+            <Text className="w-full text-[#0C1D47] text-center text-2xl font-bold my-5">
+              Add Course
+            </Text>
+            <View className="w-full mt-36 px-8">
+              <Pressable
+                className="bg-[#084eff] rounded-xl py-2 w-full"
+                onPress={handleAdd}
+              >
+                <Text className="text-white font-medium w-full text-lg text-center">
+                  Add
+                </Text>
+              </Pressable>
+              <Pressable
+                className="bg-[#860f0f] rounded-xl py-2 w-full mt-4"
+                onPress={() => setModalVisible(false)}
+              >
+                <Text className="text-white font-medium w-full text-lg text-center">
+                  Cancel
+                </Text>
+              </Pressable>
+            </View>
+            <View className="absolute top-[150px] w-full">
+              <SelectList
+                setSelected={handleGradeSelect}
+                placeholder="Select Grade"
+                data={Grade}
+                save="name"
+                boxStyles={{ backgroundColor: "white", borderColor: "#ECECEC" }}
+                dropdownStyles={{
+                  borderColor: "#ECECEC",
+                  backgroundColor: "white",
+                }}
+              />
+            </View>
+            <View className="my-3 absolute top-[80px] w-full">
+              <SelectList
+                setSelected={handleCourseSelect}
+                data={Courses}
+                placeholder="Select Course"
+                save="value"
+                boxStyles={{ backgroundColor: "white", borderColor: "#ECECEC" }}
+                dropdownStyles={{
+                  borderColor: "#ECECEC",
+                  backgroundColor: "white",
+                }}
+              />
+            </View>
+          </View>
+        </BlurView>
       </Modal>
-      {/* <View className="flex-1 items-center bg-[#2d4759] border border-dashed border-white rounded-lg h-20">
-        <Text className="text-white text-3xl">Calculator</Text>
-      </View> */}
     </SafeAreaView>
   );
 }
