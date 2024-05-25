@@ -21,10 +21,17 @@ export default function Card({ data }) {
         className="w-full h-28 rounded-t-md"
         resizeMode="cover"
       />
-      <Text className="text-black text-lg font-medium">{data.name}</Text>
+      <Text
+        className="text-black text-[15px] font-medium my-1"
+        numberOfLines={1}
+      >
+        {data.name}
+      </Text>
       <View className="flex-row items-center gap-1">
         <Image source={icons.location} className="w-4 h-4" />
-        <Text className="text-black text-lg font-medium">{data.location}</Text>
+        <Text className="text-black text-[14px] font-medium " numberOfLines={1}>
+          {data.location}
+        </Text>
       </View>
     </View>
   );

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Modal, Pressable, Text, View } from "react-native";
+import { Modal, Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Card from "@/components/LocationCard";
 import LocationModal from "@/components/LocationModal";
-import Food from "@/data/food";
+import Locations from "@/data/locations";
 
 export default function Discover() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -11,35 +11,38 @@ export default function Discover() {
 
   return (
     <SafeAreaView className="bg-white h-full w-full">
-      <Text>Discover</Text>
-      <View className="h-full w-full flex-col gap-2">
-        {Food.map((foods, index) => (
+      <Text className="text-[#0C1D47] font-bold text-3xl my-3 w-full text-center">
+        Discover
+      </Text>
+      <ScrollView className="h-full w-full flex-col gap-2">
+        {Locations.map((locations, index) => (
           <View
             className="flex-row w-full px-2 items-center justify-between"
             key={index}
           >
-            {foods.map((food, indexs) => (
+            {locations.map((location, indexs) => (
               <Pressable
                 key={indexs}
                 onPress={() => {
                   setModalVisible(true);
-                  setLocation(food.gps);
+                  setLocation(location.gps);
                 }}
               >
                 <Card
                   data={{
-                    name: food.name,
-                    location: food.location,
-                    description: food.description,
-                    source: food.source,
-                    gps: food.gps,
+                    name: location.name,
+                    location: location.location,
+                    description: location.description,
+                    source: location.source,
+                    gps: location.gps,
                   }}
                 />
               </Pressable>
             ))}
           </View>
         ))}
-      </View>
+        <View className="w-full h-3" />
+      </ScrollView>
       <Modal
         animationType="slide"
         visible={modalVisible}
