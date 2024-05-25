@@ -10,9 +10,9 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: "#FFA001",
-        // tabBarActiveTintColor: "#C03F3A",
-        tabBarInactiveTintColor: "#CDCDE0",
+        // tabBarActiveTintColor: "#FFA001",
+        tabBarActiveTintColor: "#ffffff",
+        tabBarInactiveTintColor: "#848488",
         tabBarShowLabel: false,
         tabBarStyle: {
           // backgroundColor: "#1F313D",
@@ -72,13 +72,13 @@ export default function TabLayout() {
       <Tabs.Screen
         name="explore"
         options={{
-          title: "Calculator",
+          title: "Food",
           headerShown: false,
           tabBarIcon: ({ color, focused }) => (
             <Icon
-              icon={icons.calculator}
+              icon={icons.food}
               color={color}
-              name="Calculator"
+              name="Food Zone"
               focused={focused}
             />
           ),

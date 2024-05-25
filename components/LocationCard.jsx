@@ -7,7 +7,7 @@ export default function Card({ data }) {
   const img = images[data.source];
   return (
     <View
-      className="w-[50%] bg-white rounded-lg shadow-2xl p-2 mx-1"
+      className="w-[46vw] bg-white rounded-lg shadow-2xl p-2 mx-1"
       style={{
         shadowColor: "#000",
         shadowOffset: { width: 0, height: -10 },

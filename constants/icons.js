@@ -5,6 +5,7 @@ import close from "@/assets/icons/close.png";
 import add from "@/assets/icons/add.png";
 import discover from "@/assets/icons/discover.png";
 import location from "@/assets/icons/location.png";
+import food from "@/assets/icons/food.png";
 
 export default {
   home,
@@ -14,4 +15,5 @@ export default {
   add,
   discover,
   location,
+  food,
 };
