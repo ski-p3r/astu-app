@@ -97,10 +97,16 @@ export default function Calculator() {
             key={index}
           >
             <View className="flex-row justify-between px-6 mt-3 ">
-              <View className="flex-row gap-3 items-center">
-                <Text className="text-white text-xl">Course:</Text>
-                <Text className="text-white text-2xl font-extrabold">
-                  {course.name}
+              <View className="flex-row gap-1 items-center max-w-[80%]">
+                <Text className="text-white text-[16px]">Course:</Text>
+                <Text
+                  className="text-white text-[18px] font-extrabold w-[60%]"
+                  numberOfLines={1}
+                >
+                  {course.name.split(" ").slice(0, -1).join(" ")}{" "}
+                </Text>
+                <Text className="text-white font-extrabold text-[18px]">
+                  {course.name.split(" ").pop()}
                 </Text>
               </View>
               <Pressable onPress={() => handleDelete(course.name)}>
@@ -147,9 +153,11 @@ export default function Calculator() {
           <Text className="text-[#0C1D47] font-medium text-lg">Add Course</Text>
         </View>
       </Pressable>
-      <Text className="text-[#fff] font-medium text-2xl bg-[#0C1D47] py-3 mt-5 px-6 rounded-full">
-        Your GPA is {totalGrade}
-      </Text>
+      {courses.length > 0 && (
+        <Text className="text-[#fff] font-medium text-2xl bg-[#0C1D47] py-3 mt-5 px-6 rounded-full">
+          Your GPA is {totalGrade}
+        </Text>
+      )}
       <Modal
         animationType="slide"
         transparent={true}

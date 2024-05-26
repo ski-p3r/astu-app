@@ -120,7 +120,9 @@ export default function Cgpa() {
           className="rounded-xl flex-col items-center justify-center bg-white shadow-2xl mt-5"
         >
           <Image source={icons.add} resizeMode="contain" className="w-8 h-8" />
-          <Text className="text-[#0C1D47] font-medium text-lg">Add Course</Text>
+          <Text className="text-[#0C1D47] font-medium text-lg">
+            Add Semister GPA
+          </Text>
         </View>
       </Pressable>
       {cgpa && (
@@ -150,7 +152,7 @@ export default function Cgpa() {
             }}
           >
             <Text className="w-full text-[#0C1D47] text-center text-2xl font-bold my-5">
-              Add GPA
+              Add Semister GPA
             </Text>
             <TextInput
               placeholder="Enter GPA"

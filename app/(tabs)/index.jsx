@@ -29,7 +29,6 @@ export default function Home() {
             Welcome to ASTU 🚀
           </Text>
         </View>
-
         <View className="px-6 py-6">
           <Text className="text-[18px] text-center font-medium text-[#0C1D47] ">
             Your ultimate tool for academic success, adventure discovery, and

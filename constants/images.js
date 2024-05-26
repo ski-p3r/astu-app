@@ -9,6 +9,9 @@ import stadium from "@/assets/images/stadium.jpeg";
 import femaleslibrary from "@/assets/images/femaleslibrary.jpeg";
 import amphi from "@/assets/images/amphi.jpg";
 import ict from "@/assets/images/ict.jpg";
+import darik from "@/assets/images/darik.jpg";
+import hotel from "@/assets/images/hoteel.jpg";
+import astulounge from "@/assets/images/astulounge.jpg";
 
 export default {
   food,
@@ -22,4 +25,7 @@ export default {
   femaleslibrary,
   amphi,
   ict,
+  darik,
+  hotel,
+  astulounge,
 };

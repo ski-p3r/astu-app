@@ -1,50 +1,30 @@
 const Food = [
   [
     {
-      name: "Hamburger",
-      description: "A delicious hamburger", // Fixed typo here
-      source: "food",
-      location: "Fast Food",
-      gps: "place/ASTU+Central+Library/@8.5611817,39.2918904,701m/data=!3m1!1e3!4m14!1m7!3m6!1s0x164b1fbcedf65a3d:0x5b4db491c212e11c!2sASTU+Central+Library!8m2!3d8.5609604!4d39.2914215!16s%2Fg%2F12m99ls11!3m5!1s0x164b1fbcedf65a3d:0x5b4db491c212e11c!8m2!3d8.5609604!4d39.2914215!16s%2Fg%2F12m99ls11?entry=ttu",
+      name: "Darik Coffee",
+      source: "darik",
+      location: "Around Gize Lounge",
+      gps: "place/Buna+Daarik,+Darik+Coffee/@8.5569913,39.2887095,107m/data=!3m1!1e3!4m6!3m5!1s0x164b1f49d913c463:0x686b82c6388b3a25!8m2!3d8.5569779!4d39.2888354!16s%2Fg%2F11j1cgrckg?entry=ttu",
     },
     {
-      name: "Hamburger",
-      description: "A delicious hamburger", // Fixed typo here
-      source: "food",
-      location: "Fast Food",
-      gps: "place/ASTU+Central+Library/@8.5611817,39.2918904,701m/data=!3m1!1e3!4m14!1m7!3m6!1s0x164b1fbcedf65a3d:0x5b4db491c212e11c!2sASTU+Central+Library!8m2!3d8.5609604!4d39.2914215!16s%2Fg%2F12m99ls11!3m5!1s0x164b1fbcedf65a3d:0x5b4db491c212e11c!8m2!3d8.5609604!4d39.2914215!16s%2Fg%2F12m99ls11?entry=ttu",
+      name: "Amphi Spot",
+      source: "darik",
+      location: "Around Gada Gate",
+      gps: "place/Amphi+Spot+ጠላ+ቤት+and+Fast+food/@8.5565845,39.2901323,85m/data=!3m1!1e3!4m6!3m5!1s0x164b1f5bb7984fab:0x57cf405007235d14!8m2!3d8.5565066!4d39.2902325!16s%2Fg%2F11y1xlk2mp?entry=ttu",
     },
   ],
   [
     {
-      name: "Hamburger",
-      description: "A delicious hamburger", // Fixed typo here
-      source: "food",
-      location: "Fast Food",
-      gps: "place/ASTU+Central+Library/@8.5611817,39.2918904,701m/data=!3m1!1e3!4m14!1m7!3m6!1s0x164b1fbcedf65a3d:0x5b4db491c212e11c!2sASTU+Central+Library!8m2!3d8.5609604!4d39.2914215!16s%2Fg%2F12m99ls11!3m5!1s0x164b1fbcedf65a3d:0x5b4db491c212e11c!8m2!3d8.5609604!4d39.2914215!16s%2Fg%2F12m99ls11?entry=ttu",
+      name: "Skycity Hotel",
+      source: "hotel",
+      location: "Around Main Gate",
+      gps: "place/Skycity+Hotel/@8.5581034,39.2860216,116m/data=!3m1!1e3!4m6!3m5!1s0x164b1fe59b0d3427:0x27b6b06786677c14!8m2!3d8.5580925!4d39.2860208!16s%2Fg%2F11skq1wn6z?entry=ttu",
     },
     {
-      name: "Hamburger",
-      description: "A delicious hamburger", // Fixed typo here
-      source: "food",
-      location: "Fast Food",
-      gps: "place/ASTU+Central+Library/@8.5611817,39.2918904,701m/data=!3m1!1e3!4m14!1m7!3m6!1s0x164b1fbcedf65a3d:0x5b4db491c212e11c!2sASTU+Central+Library!8m2!3d8.5609604!4d39.2914215!16s%2Fg%2F12m99ls11!3m5!1s0x164b1fbcedf65a3d:0x5b4db491c212e11c!8m2!3d8.5609604!4d39.2914215!16s%2Fg%2F12m99ls11?entry=ttu",
-    },
-  ],
-  [
-    {
-      name: "Hamburger",
-      description: "A delicious hamburger", // Fixed typo here
-      source: "food",
-      location: "Fast Food",
-      gps: "place/ASTU+Central+Library/@8.5611817,39.2918904,701m/data=!3m1!1e3!4m14!1m7!3m6!1s0x164b1fbcedf65a3d:0x5b4db491c212e11c!2sASTU+Central+Library!8m2!3d8.5609604!4d39.2914215!16s%2Fg%2F12m99ls11!3m5!1s0x164b1fbcedf65a3d:0x5b4db491c212e11c!8m2!3d8.5609604!4d39.2914215!16s%2Fg%2F12m99ls11?entry=ttu",
-    },
-    {
-      name: "Hamburger",
-      description: "A delicious hamburger", // Fixed typo here
-      source: "food",
-      location: "Fast Food",
-      gps: "place/ASTU+Central+Library/@8.5611817,39.2918904,701m/data=!3m1!1e3!4m14!1m7!3m6!1s0x164b1fbcedf65a3d:0x5b4db491c212e11c!2sASTU+Central+Library!8m2!3d8.5609604!4d39.2914215!16s%2Fg%2F12m99ls11!3m5!1s0x164b1fbcedf65a3d:0x5b4db491c212e11c!8m2!3d8.5609604!4d39.2914215!16s%2Fg%2F12m99ls11?entry=ttu",
+      name: "ASTU Lounge",
+      source: "astulounge",
+      location: "Around Females Library",
+      gps: "place/ASTU+lounge/@8.5629532,39.2920701,146m/data=!3m1!1e3!4m6!3m5!1s0x164b1f11a8d9e00f:0x707501f617d56a04!8m2!3d8.5629517!4d39.2920677!16s%2Fg%2F11h9brt5m5?entry=ttu",
     },
   ],
 ];
