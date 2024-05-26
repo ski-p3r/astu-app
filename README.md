@@ -9,21 +9,27 @@
 
 ## Screenshots
 
-### 🏠 Home Screen
-![Home Screen](./assets/screenshot/home.jpg)
-
 ### 📈 GPA Calculator Screen
-![GPA Calculator Screen](./assets/screenshot/gpa.jpg)
+<div style="display:flex; flex-direction:row;">
+  <img src="./assets/screenshot/gpa.jpg" alt="GPA Calculator Screen" style="width:45%; margin-right:5px;">
+</div>
 
 ### 📊 CGPA Calculator Screen
-![CGPA Calculator Screen](./assets/screenshot/cgpa.jpg)
+<div style="display:flex; flex-direction:row;">
+  <img src="./assets/screenshot/cgpa.jpg" alt="CGPA Calculator Screen" style="width:45%; margin-right:5px;">
+</div>
 
 ### 🌍 Explore Locations Screen
-![Explore Locations Screen](./assets/screenshot/discover.jpg)
-![Explore Locations Screen](./assets/screenshot/map.jpg)
+<div style="display:flex; flex-direction:row;">
+  <img src="./assets/screenshot/discover.jpg" alt="Explore Locations Screen" style="width:45%; margin-right:5px;">
+  <img src="./assets/screenshot/map.jpg" alt="Explore Locations Screen" style="width:45%;">
+</div>
 
 ### 🍴 Food Zone Locator Screen
-![Food Zone Locator Screen](./assets/screenshot/foodfood_zone_locator_screen.jpg)
+<div style="display:flex; flex-direction:row;">
+  <img src="./assets/screenshot/food_zone_locator_screen.jpg" alt="Food Zone Locator Screen" style="width:45%; margin-right:5px;">
+</div>
+
 
 ## 🛠️ Installation
 
