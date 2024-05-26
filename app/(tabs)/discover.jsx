@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Card from "@/components/LocationCard";
 import LocationModal from "@/components/LocationModal";
 import Locations from "@/data/locations";
+import { StatusBar } from "expo-status-bar";
 
 export default function Discover() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -11,6 +12,7 @@ export default function Discover() {
 
   return (
     <SafeAreaView className="bg-white h-full w-full">
+      <StatusBar hidden={false} backgroundColor={"#0C1D47"} />
       <Text className="text-[#0C1D47] font-bold text-3xl my-3 w-full text-center">
         Discover
       </Text>

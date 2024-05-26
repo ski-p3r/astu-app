@@ -79,9 +79,6 @@ export default function Calculator() {
     if (totalCreditHours === 0) {
       return 0;
     }
-    console.log(totalCreditHours);
-    console.log(totalGradePoints);
-    console.log(totalGradePoints / totalCreditHours);
     const gg = (totalGradePoints / totalCreditHours).toFixed(2);
 
     setTotalGrade(gg);
@@ -89,7 +86,7 @@ export default function Calculator() {
 
   return (
     <SafeAreaView className="flex-1 w-full bg-white pt-3 items-center">
-      <StatusBar hidden />
+      <StatusBar hidden={false} backgroundColor={"#0C1D47"} />
       <Text className="text-3xl font-bold mb-3 text-[#0C1D47]">
         GPA Calculator
       </Text>
@@ -186,7 +183,7 @@ export default function Calculator() {
                 </Text>
               </Pressable>
               <Pressable
-                className="bg-[#860f0f] rounded-xl py-2 w-full mt-4"
+                className="bg-[#e4002b] rounded-xl py-2 w-full mt-4"
                 onPress={() => setModalVisible(false)}
               >
                 <Text className="text-white font-medium w-full text-lg text-center">

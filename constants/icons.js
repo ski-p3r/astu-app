@@ -6,6 +6,7 @@ import add from "@/assets/icons/add.png";
 import discover from "@/assets/icons/discover.png";
 import location from "@/assets/icons/location.png";
 import food from "@/assets/icons/food.png";
+import cgpa from "@/assets/icons/cgpa.png";
 
 export default {
   home,
@@ -16,4 +17,5 @@ export default {
   discover,
   location,
   food,
+  cgpa,
 };

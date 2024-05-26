@@ -55,6 +55,22 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="cgpa"
+        options={{
+          title: "CGPA Calculator",
+          headerShown: false,
+          tabBarIcon: ({ color, focused }) => (
+            <Icon
+              icon={icons.cgpa}
+              className={"w-10 h-10"}
+              color={color}
+              name="CGPA"
+              focused={focused}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="discover"
         options={{
           title: "discover",

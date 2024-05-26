@@ -1,6 +1,6 @@
 import { Image, Text, View } from "react-native";
 
-export default function Icon({ icon, color, name, focused }) {
+export default function Icon({ icon, color, name, focused, className }) {
   return (
     <View className="flex items-center justify-center gap-0.5">
       <Image
@@ -10,7 +10,9 @@ export default function Icon({ icon, color, name, focused }) {
         className="w-6 h-6"
       />
       <Text
-        className={`${focused ? "font-psemibold" : "font-pregular"} text-xs`}
+        className={`${
+          focused ? "font-psemibold" : "font-pregular"
+        } text-xs ${className}`}
         style={{ color: color }}
       >
         {name}
